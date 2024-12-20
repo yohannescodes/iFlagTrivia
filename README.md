@@ -1,6 +1,6 @@
-# iTrivia: A Flag Quiz App
+# iFlagTrivia: A Flag Quiz App
 
-iTrivia is a fun and engaging trivia quiz app built using **UIKit** where players are shown a flag and asked to identify which country's flag it is. Players select their answer from four options, and the app provides feedback on whether the answer is correct or incorrect. This app uses **emoji flags** available in the Apple emoji set to make it easy to integrate a variety of flags.
+iFlagTrivia is a fun and engaging trivia quiz app built using **UIKit** where players are shown a flag and asked to identify which country's flag it is. Players select their answer from four options, and the app provides feedback on whether the answer is correct or incorrect. This app uses **emoji flags** available in the Apple emoji set to make it easy to integrate a variety of flags.
 
 ## Features
 
@@ -23,7 +23,7 @@ To run the app, clone the repository and open the project in Xcode:
 ```bash
 git clone https://github.com/your-username/iTrivia.git
 cd iTrivia
-open iTrivia.xcodeproj
+open iFlagTrivia.xcodeproj
 
 ---
 ```
