@@ -29,8 +29,8 @@ struct ContentView: View {
                             Spacer()
                             Text("High Score: \(highScore)")
                                 .padding()
-                                .foregroundColor(.white)
-                                .background(.black)
+                                .foregroundColor(Color.primary)
+                                .background(Color(UIColor.secondarySystemBackground))
                             Spacer()
                             Text("Score: \(score)")
                                 .padding()
@@ -54,8 +54,8 @@ struct ContentView: View {
                         }
                         .frame(width: 120, height: 40)
                         .padding()
-                        .background(.black)
-                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .foregroundColor(Color(UIColor.systemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         Spacer()
@@ -64,8 +64,8 @@ struct ContentView: View {
                         }
                         .frame(width: 120, height: 40)
                         .padding()
-                        .background(.black)
-                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .foregroundColor(Color(UIColor.systemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         Spacer()
@@ -77,8 +77,8 @@ struct ContentView: View {
                         }
                         .frame(width: 120, height: 40)
                         .padding()
-                        .background(.black)
-                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .foregroundColor(Color(UIColor.systemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         Spacer()
@@ -87,8 +87,8 @@ struct ContentView: View {
                         }
                         .frame(width: 120, height: 40)
                         .padding()
-                        .background(.black)
-                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .foregroundColor(Color(UIColor.systemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         Spacer()
@@ -97,7 +97,7 @@ struct ContentView: View {
             }else {
                 Text("Loading...")
                     .font(.title)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color.secondary)
             }
         }.alert("Game Over :( You scored \(score)!", isPresented: $isGameOver){
             
