@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var themeManager: ThemeManager
     var viewModel = iFlagTriviaViewModel()
     @State var score: Int = 0
     @State var flagOptions: [iFlag] = []
@@ -18,29 +19,44 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
+            HStack {
+                Spacer()
+                Button(action: {
+                    themeManager.toggleTheme()
+                }) {
+                    Image(systemName: themeIconName())
+                        .foregroundColor(Color("ButtonTextColor")) // Use custom color
+                        .padding()
+                        .background(Color("ButtonBackgroundColor")) // Use custom color
+                        .clipShape(Circle())
+                }
+                .padding(.trailing)
+            }
+
             if isGameReady {
                 VStack(spacing: 40) {
-                    HStack{
-                        Spacer()
-                        
-                    }
+                    // HStack for scores remains, theme button is above this
                     VStack {
                         HStack{
                             Spacer()
                             Text("High Score: \(highScore)")
                                 .padding()
-                                .foregroundColor(.white)
-                                .background(.black)
+                                .foregroundColor(Color("TextColor")) // Use custom color
+                                .background(Color("BackgroundColor")) // Use custom color
                             Spacer()
                             Text("Score: \(score)")
                                 .padding()
+                                .foregroundColor(Color("TextColor")) // Use custom color
+                                .background(Color("BackgroundColor")) // Use custom color
                             Spacer()
                         }
                         
                         Text("Guess which country's flag this is")
+                            .foregroundColor(Color("TextColor")) // Use custom color
                             .fontWeight(.ultraLight)
                             .font(.system(size: 22))
                         Text(flagStaged.flag)
+                            .foregroundColor(Color("TextColor")) // Use custom color
                             .font(.system(size: 100))
                             .fontWeight(.heavy)
                     }
@@ -54,8 +70,8 @@ struct ContentView: View {
                         }
                         .frame(width: 120, height: 40)
                         .padding()
-                        .background(.black)
-                        .foregroundColor(.white)
+                        .background(Color("ButtonBackgroundColor")) // Use custom color
+                        .foregroundColor(Color("ButtonTextColor")) // Use custom color
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         Spacer()
@@ -64,8 +80,8 @@ struct ContentView: View {
                         }
                         .frame(width: 120, height: 40)
                         .padding()
-                        .background(.black)
-                        .foregroundColor(.white)
+                        .background(Color("ButtonBackgroundColor")) // Use custom color
+                        .foregroundColor(Color("ButtonTextColor")) // Use custom color
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         Spacer()
@@ -77,8 +93,8 @@ struct ContentView: View {
                         }
                         .frame(width: 120, height: 40)
                         .padding()
-                        .background(.black)
-                        .foregroundColor(.white)
+                        .background(Color("ButtonBackgroundColor")) // Use custom color
+                        .foregroundColor(Color("ButtonTextColor")) // Use custom color
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         Spacer()
@@ -87,8 +103,8 @@ struct ContentView: View {
                         }
                         .frame(width: 120, height: 40)
                         .padding()
-                        .background(.black)
-                        .foregroundColor(.white)
+                        .background(Color("ButtonBackgroundColor")) // Use custom color
+                        .foregroundColor(Color("ButtonTextColor")) // Use custom color
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         Spacer()
@@ -97,9 +113,11 @@ struct ContentView: View {
             }else {
                 Text("Loading...")
                     .font(.title)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color("TextColor")) // Use custom color
             }
-        }.alert("Game Over :( You scored \(score)!", isPresented: $isGameOver){
+        }
+        .background(Color("BackgroundColor").edgesIgnoringSafeArea(.all)) // Use custom background color
+        .alert("Game Over :( You scored \(score)!", isPresented: $isGameOver){
             
             Button("Ok", role: .cancel){
                 setHighScore(score: score)
@@ -108,6 +126,17 @@ struct ContentView: View {
         }
         .padding()
         .onAppear(perform: startNewGame)
+    }
+
+    private func themeIconName() -> String {
+        switch themeManager.currentTheme {
+        case .light:
+            return "moon.fill"
+        case .dark:
+            return "sun.max.fill"
+        case .system:
+            return "gearshape.fill"
+        }
     }
     
     func handleAnswer(selectedOption: iFlag) {
@@ -144,4 +173,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(ThemeManager())
 }
